@@ -1,4 +1,4 @@
-version: '2'
+version: '3.7'
 
 services:
   db:
@@ -6,10 +6,6 @@ services:
     restart: always
     env_file:
       - db.env
-    environment:
-      MYSQL_DATABASE: teamspeak
-      MYSQL_USER: teamspeak
-      MYSQL_PASSWORD: teamspeak
     volumes:
       - db_data:/var/lib/mysql
 
@@ -24,15 +20,6 @@ services:
       - db
     env_file:
       - teamspeak.env
-    environment:
-      TS3SERVER_DB_PLUGIN: ts3db_mariadb
-      TS3SERVER_DB_SQLCREATEPATH: create_mariadb
-      TS3SERVER_DB_HOST: db
-      TS3SERVER_DB_USER: teamspeak
-      TS3SERVER_DB_PASSWORD: teamspeak
-      TS3SERVER_DB_NAME: teamspeak
-      TS3SERVER_DB_WAITUNTILREADY: 30
-      TS3SERVER_LICENSE: accept
     volumes:
       - server_data:/var/ts3server
 
