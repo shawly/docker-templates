@@ -4,8 +4,6 @@ services:
   portainer:
     image: portainer/portainer
     restart: always
-    env_file:
-      - portainer.env
     command: -H unix:///var/run/docker.sock
     ports:
       - "${PORTAINER_PORT:-9000}:9000"
