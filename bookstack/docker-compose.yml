@@ -16,10 +16,10 @@ services:
     image: solidnerd/bookstack
     restart: always
     environment:
-      - DB_HOST: "db:3306"
-      - DB_DATABASE: bookstack
-      - DB_USERNAME: bookstack
-      - DB_PASSWORD: bookstack
+      DB_HOST: "db:3306"
+      DB_DATABASE: bookstack
+      DB_USERNAME: bookstack
+      DB_PASSWORD: bookstack
     ports:
       - ${BOOKSTACK_PORT:-8080}:80
     depends_on:
