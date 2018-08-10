@@ -1,0 +1,54 @@
+version: '2'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    env_file:
+      - db.env
+    environment:
+      MYSQL_DATABASE: teamspeak
+      MYSQL_USER: teamspeak
+      MYSQL_PASSWORD: teamspeak
+    volumes:
+      - db_data:/var/lib/mysql
+
+  ts3server:
+    image: teamspeak
+    restart: always
+    ports:
+      - 9987:9987/udp
+      - 10011:10011
+      - 30033:30033
+    depends_on:
+      - db
+    env_file:
+      - teamspeak.env
+    environment:
+      TS3SERVER_DB_PLUGIN: ts3db_mariadb
+      TS3SERVER_DB_SQLCREATEPATH: create_mariadb
+      TS3SERVER_DB_HOST: db
+      TS3SERVER_DB_USER: teamspeak
+      TS3SERVER_DB_PASSWORD: teamspeak
+      TS3SERVER_DB_NAME: teamspeak
+      TS3SERVER_DB_WAITUNTILREADY: 30
+      TS3SERVER_LICENSE: accept
+    volumes:
+      - server_data:/var/ts3server
+
+  tsdns:
+    image: teamspeak
+    restart: always
+    env_file:
+      - tsdns.env
+    command: sh -c "echo $${TSDNS_HOST_ENTRIES} | sed s/,/\\\\n/g > /var/ts3server/tsdns_settings.ini && /opt/ts3server/tsdns/tsdnsserver"
+    ports:
+      - 41144:41144
+    depends_on:
+      - ts3server
+    volumes_from:
+      - ts3server
+
+volumes:
+  server_data:
+  db_data:
