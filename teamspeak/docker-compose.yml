@@ -27,6 +27,7 @@ services:
     image: teamspeak
     restart: always
     env_file:
+      - .env
       - tsdns.env
     command: sh -c "echo $${TSDNS_HOST_ENTRIES} | sed s/,/\\n/g > /var/ts3server/tsdns_settings.ini && /opt/ts3server/tsdns/tsdnsserver"
     ports:
