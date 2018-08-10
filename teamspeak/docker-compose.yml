@@ -33,9 +33,10 @@ services:
       - 41144:41144
     depends_on:
       - ts3server
-    volumes_from:
-      - ts3server
+    volumes:
+      - tsdns_data:/var/ts3server
 
 volumes:
+  tsdns_data:
   server_data:
   db_data:
