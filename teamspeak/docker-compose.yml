@@ -25,6 +25,8 @@ services:
       TS3SERVER_DB_WAITUNTILREADY: 30
       TS3SERVER_LICENSE: accept
     ports:
+      - 2008:2008
+      - 2010:2010/udp
       - 9987:9987/udp
       - 10011:10011
       - 30033:30033
@@ -38,7 +40,7 @@ services:
     restart: always
     environment:
       TSDNS_HOST_ENTRIES: ${TSDNS_HOST_ENTRIES}
-    command: sh -c "echo $${TSDNS_HOST_ENTRIES} | sed s/,/\\n/g > /var/ts3server/tsdns_settings.ini && /opt/ts3server/tsdns/tsdnsserver"
+    command: sh -c "echo $${TSDNS_HOST_ENTRIES} | sed s/,/\\\\n/g > /var/ts3server/tsdns_settings.ini && /opt/ts3server/tsdns/tsdnsserver"
     ports:
       - 41144:41144
     depends_on:
