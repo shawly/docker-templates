@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  db:
+    image: mongo
+    command: --smallfiles --bind_ip db
+    volumes:
+      - db_data:/data/db
+      
+  wikijs:
+    image: requarks/wiki
+    depends_on:
+      - db
+    ports:
+      - ${WIKIJS_PORT}:3000
+    environment:
+      WIKI_ADMIN_EMAIL: ${WIKI_ADMIN_EMAIL}
+    volumes:
+      - ./config.yml:/var/wiki/config.yml
+
+volumes:
+  db_data:
+  wikijs_data:
