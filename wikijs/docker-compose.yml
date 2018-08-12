@@ -11,20 +11,21 @@ services:
     image: requarks/wiki
     depends_on:
       - db
-      - envsubst
+      - configurator
     ports:
       - ${WIKIJS_PORT}:3000
     environment:
       WIKI_ADMIN_EMAIL: ${WIKI_ADMIN_EMAIL}
     volumes:
       - ./config.yml:/var/wiki/config.yml
+      - ./git-private.key:/etc/wiki/keys/git-private.pem
 
-  envsubst:
+  configurator:
     build: .
     env_file:
       - wikijs.env
     volumes:
-      - ./config.yml:/tmp/config.yml
+      - .:/tmp
 
 volumes:
   db_data:
