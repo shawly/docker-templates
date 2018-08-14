@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    labels:
+      traefik.enable: "true"
+      traefik.frontend.rule: "Host:shawly.net"

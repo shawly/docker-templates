@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  softethervpn:
+    image: shawly/softethervpn:alpine
+    build: .
+    restart: always
+#    network_mode: host
+    environment:
+      USERS: ${SOFTETHERVPN_USER_LIST}
+      PSK: ${SOFTETHERVPN_PRIVATE_SHARED_KEY}
+      SPW: ${SOFTETHERVPN_SERVER_PASSWORD}
+      HPW: ${SOFTETHERVPN_HUB_PASSWORD}
+    volumes:
+      - log_data:/usr/vpnserver/server_log
+      - softethervpn_data:/config
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "500:500/udp"   # IPSEC IKE
+      - "1194:1194/udp" # OpenVPN data
+      - "1194:1194/tcp" # OpenVPN control
+      - "1701:1701/udp" # L2TP data
+      - "1701:1701/tcp" # L2TP control
+      - "4500:4500/udp" # IPSEC NAT-T data
+      - "5555:5555/tcp" # SoftEther VPN
+
+volumes:
+  log_data:
+  softethervpn_data:
