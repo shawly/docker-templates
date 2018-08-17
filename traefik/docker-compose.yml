@@ -4,6 +4,8 @@ services:
   traefik:
     image: traefik
     restart: always
+    env_file:
+      - traefik.env
     ports:
       - "80:80"
       - "443:443"

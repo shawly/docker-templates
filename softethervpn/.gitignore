@@ -1,1 +1,3 @@
 vpn_server.config
+dnsmasq.conf
+sockd.conf

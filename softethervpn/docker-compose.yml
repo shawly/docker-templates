@@ -5,7 +5,6 @@ services:
     image: shawly/softethervpn:alpine
     build: .
     restart: always
-#    network_mode: host
     environment:
       USERS: ${SOFTETHERVPN_USER_LIST}
       PSK: ${SOFTETHERVPN_PRIVATE_SHARED_KEY}
@@ -24,6 +23,20 @@ services:
       - "1701:1701/tcp" # L2TP control
       - "4500:4500/udp" # IPSEC NAT-T data
       - "5555:5555/tcp" # SoftEther VPN
+
+  dnsmasq:
+    image: andyshinn/dnsmasq:2.78
+    restart: always
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ./dnsmasq.conf:/etc/dnsmasq.conf
+
+  socks:
+    image: wernight/dante
+    restart: always
+    volumes:
+      - ./sockd.conf:/etc/sockd.conf
 
 volumes:
   log_data:
