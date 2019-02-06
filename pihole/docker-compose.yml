@@ -2,7 +2,7 @@ version: '3'
 services:
   pihole:
     image: pihole/pihole
-    restart: always
+    restart: unless-stopped
     env_file:
       - pihole.env
     cap_add:
@@ -15,7 +15,11 @@ services:
     volumes:
       - pihole_data:/etc/pihole
       - dnsmasq_data:/etc/dnsmasq.d
-      - /mnt/space/docker/pihole/pihole.log:/var/log/pihole.log
+      - /var/log/docker/pihole.log:/var/log/pihole.log
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+      - 1.0.0.1
 
 volumes:
   pihole_data:
