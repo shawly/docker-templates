@@ -16,10 +16,6 @@ services:
       - pihole_data:/etc/pihole
       - dnsmasq_data:/etc/dnsmasq.d
       - /var/log/docker/pihole.log:/var/log/pihole.log
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
-      - 1.0.0.1
 
 volumes:
   pihole_data:
