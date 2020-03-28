@@ -1,0 +1,31 @@
+[log]
+  level = "ERROR"
+
+[providers]
+  [providers.docker]
+    exposedByDefault = false
+    endpoint = "unix:///var/run/docker.sock"
+    # change this if you named your network for traefik differently
+    network = "traefik_net"
+  [providers.file]
+    filename = "/etc/traefik/dynamic.yml"
+
+[api]
+  dashboard = true
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+  [entryPoints.web-secure]
+    address = ":443"
+  [entryPoints.dashboard]
+    address = ":8080"
+
+[certificatesResolvers]
+  [certificatesResolvers.default.acme]
+    # cloudflare example, change this for your needs
+    email = "you@example.com"
+    storage = "/etc/traefik/acme/acme.json"
+    [certificatesResolvers.default.acme.dnsChallenge]
+      provider = "cloudflare"
+      delayBeforeCheck = 0

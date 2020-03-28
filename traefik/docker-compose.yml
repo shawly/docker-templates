@@ -1,16 +1,19 @@
-version: '3'
+version: "3.7"
 
 services:
   traefik:
-    image: traefik
+    # you can also choose the latest version, but for traefik it's better to specify a tag because of possible breaking changes
+    image: traefik:v2.1
     restart: always
     env_file:
       - traefik.env
-    ports:
-      - "80:80"
-      - "443:443"
-      - "8080:8080"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.toml:/etc/traefik/traefik.toml
-      - ./acme.json:/acme.json
+      - /etc/localtime:/etc/localtime
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./config:/etc/traefik
+    networks:
+      net:
+
+# this creates a new network named traefik_net, make sure to change the config/traefik.toml too if you changed this
+networks:
+  net:
