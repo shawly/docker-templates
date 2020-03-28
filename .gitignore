@@ -1,4 +1,5 @@
 .env 
-**/*.local.yml
+**/*.lan.yml
+**/*.remote.yml
 **/*.override.yml
 **/*.env
