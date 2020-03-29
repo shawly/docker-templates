@@ -20,6 +20,11 @@ My personal collection of docker-compose files. Make sure to read the descriptio
             * [template/&lt;container&gt;.env vs template/.env](#templatecontainerenv-vs-templateenv)
    * [Containers](#containers)
       * [Ready to use](#ready-to-use)
+         * [Docker](#docker)
+            * [Utility](#utility)
+         * [Download Managers](#download-managers)
+         * [Voice Chat](#voice-chat)
+         * [PlayStation 3 Tools](#playstation-3-tools)
       * [Not ready yet](#not-ready-yet)
       * [How to use?](#how-to-use)
          * [The proper way to use](#the-proper-way-to-use)
@@ -134,11 +139,17 @@ In short, the **\<container>.env** only contains variables for the application w
 
 ## Ready to use
 
- - [Traefik](https://github.com/shawly/docker-templates/tree/master/traefik)
- - [Portainer](https://github.com/shawly/docker-templates/tree/master/portainer)
- - [ps3netsrv](https://github.com/shawly/docker-templates/tree/master/ps3netsrv)
- - [TeamSpeak](https://github.com/shawly/docker-templates/tree/master/teamspeak)
- - [Watchtower](https://github.com/shawly/docker-templates/tree/master/watchtower)
+ ### Docker
+ #### Utility
+ - [Traefik](https://github.com/shawly/docker-templates/tree/master/traefik) - a flexible, extensive reverse proxy
+ - [Portainer](https://github.com/shawly/docker-templates/tree/master/portainer) - monitoring and simple management of containers
+ - [Watchtower](https://github.com/shawly/docker-templates/tree/master/watchtower) - automatic update your containers
+ ### Download Managers
+ - [JDownloader2](https://github.com/shawly/docker-templates/tree/master/jdownloader) - popular Java based download manager
+ ### Voice Chat
+ - [TeamSpeak](https://github.com/shawly/docker-templates/tree/master/teamspeak) - popular, easy to setup VoIP server
+ ### PlayStation 3 Tools
+ - [ps3netsrv](https://github.com/shawly/docker-templates/tree/master/ps3netsrv) - custom file server for PS3 tools like webMAN-MOD and MultiMAN
 
 ## Not ready yet
 
@@ -176,7 +187,6 @@ If you made sure to **not adjust any files from the upstream** (use override del
 
  - Create scripts for execution of ```docker-compose``` without having to append every delta with the ```-f``` argument.
  - Create a basic template for creating new templates via copy & paste. (maybe integrate template creation into the scipts?)
- - Add descriptions and order to container list as soon as the number of containers increases.
 
 # Issues?
 
