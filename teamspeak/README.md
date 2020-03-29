@@ -132,6 +132,6 @@ Now all ports have been counted up by +1. I'm not acutally sure though if changi
 
 #### It's still not working
 
-Consult [the manual](https://portainer.readthedocs.io/en/stable/) first and the [FAQ](https://portainer.readthedocs.io/en/stable/faq.html).  
+Consult [the forums](https://forum.teamspeak.com/forums/100-Server-Support) first or contact [the support](https://teamspeak.com/en/more/contact/).  
 
 If you **made sure** the issue is related to my compose files, create an issue.

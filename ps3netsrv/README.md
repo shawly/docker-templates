@@ -74,6 +74,6 @@ Now the ps3netsrv is served under port 38009.
 
 #### It's still not working
 
-Consult [the manual](https://portainer.readthedocs.io/en/stable/) first and the [FAQ](https://portainer.readthedocs.io/en/stable/faq.html).  
+Consult [the issue tracker](https://github.com/aldostools/webMAN-MOD/issues) first and create a ticket.
 
 If you **made sure** the issue is related to my compose files, create an issue.

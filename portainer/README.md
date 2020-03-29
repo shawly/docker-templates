@@ -27,6 +27,9 @@ For example like this (replace example.com with your domain or subdomain):
 # do not add the container name to the domain, it's already been set to portainer.$DOMAIN
 MYDOMAIN=example.com
 echo DOMAIN=$MYDOMAIN >> .env
+# to adjust the subdomain you have to edit the SUBDOMAIN env var as well
+MYSUBDOMAIN=jd
+echo SUBDOMAIN=$MYSUBDOMAIN >> .env
 ```
 
 After that you can run 

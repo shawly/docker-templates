@@ -52,6 +52,6 @@ Now Portainer runs on port 9001 and the agent can access the api through port 80
 
 #### It's still not working
 
-Consult [the manual](https://portainer.readthedocs.io/en/stable/) first and the [FAQ](https://portainer.readthedocs.io/en/stable/faq.html).  
+Consult [the manual](https://containrrr.github.io/watchtower/) first and [the devs](https://github.com/containrrr/watchtower/issues).  
 
 If you **made sure** the issue is related to my compose files, create an issue.
