@@ -1,5 +1,17 @@
 # Read this first!
 
+## Validation
+
+Before running the template with ```up -d``` I recommend you to always check the template first with ```config```.
+
+```shell
+docker-compose -f docker-compose.yml -f docker-compose.traefik.yml -f docker-compose.ports.yml -f config
+```
+
+That way you can make sure no environment variables are missing and the labels for Traefik are correct.
+
+# Setup
+
 You need to create an acme.json first and apply the correct attributes before running this.
 
 ```shell
