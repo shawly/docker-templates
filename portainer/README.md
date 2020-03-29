@@ -24,6 +24,7 @@ If you are using Traefik you need to create an .env file first which specifies y
 For example like this (replace example.com with your domain or subdomain):
 
 ```shell
+# do not add the container name to the domain, it's already been set to portainer.$DOMAIN
 MYDOMAIN=example.com
 echo DOMAIN=$MYDOMAIN >> .env
 ```
@@ -34,7 +35,7 @@ After that you can run
 docker-compose -f docker-compose.yml -f docker-compose.traefik.yml up -d
 ```
 
-Now Portainer should be served as subdomain under the domain you specified, e.g. ```portainer.example.com```.
+Now Portainer should be served as subdomain under the domain you specified, e.g. ```portainer.example.com``` or ```portainer.subdomain.example.com```.
 
 ## NFS
 
