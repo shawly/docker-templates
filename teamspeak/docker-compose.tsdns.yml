@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  tsdns:
+    image: teamspeak:${TAG:-latest}
+    restart: unless-stopped
+    ports:
+      - ${TSDNS_PORT:-41144}:41144
+    depends_on:
+      - ts3server
+    volumes:
+      - ./tsdns_settings.ini:/var/ts3server/tsdns_settings.ini

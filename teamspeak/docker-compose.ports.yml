@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  ts3server:
+    ports:
+      - ${TS3_ACCOUNTING_PORT:-2008}:2008
+      - ${TS3_WEBLIST_PORT:-2010}:2010/udp
+      - ${TS3_PORT:-9987}:9987/udp
+      - ${TS3_SERVERQUERY_PORT:-100011}:10011
+      - ${TS3_FILETRANSFER_PORT:-30033}:30033

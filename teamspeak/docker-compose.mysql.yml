@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  db:
+    image: mariadb:${TAG:-latest}
+    restart: unless-stopped
+    env_file:
+      - db.env
+    volumes:
+      - db_data:/var/lib/mysql
+
+  ts3server:
+    depends_on:
+      - db
+
+volumes:
+  db_data:
