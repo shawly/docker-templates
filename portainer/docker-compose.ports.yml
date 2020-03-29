@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  portainer:
+    ports:
+      - "${PORTAINER_AGENT_PORT:-8000}:8000"
+      - "${PORTAINER_PORT:-9000}:9000"

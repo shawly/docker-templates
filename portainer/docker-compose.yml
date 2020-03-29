@@ -1,12 +1,10 @@
-version: '3'
+version: "3.7"
 
 services:
   portainer:
     image: portainer/portainer
     restart: always
     command: -H unix:///var/run/docker.sock
-    ports:
-      - "${PORTAINER_PORT:-9000}:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data

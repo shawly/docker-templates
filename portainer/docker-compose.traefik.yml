@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  portainer:
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.portainer-https.redirectscheme.scheme: https
+      traefik.http.routers.portainer-http.entrypoints: web
+      traefik.http.routers.portainer-http.rule: "Host(`portainer.${DOMAIN}`)"
+      traefik.http.routers.portainer-http.middlewares: portainer-https@docker
+      traefik.http.routers.portainer.entrypoints: web-secure
+      traefik.http.routers.portainer.rule: "Host(`portainer.${DOMAIN}`)"
+      traefik.http.routers.portainer.tls: true
+      traefik.http.routers.portainer.tls.certresolver: default
+      traefik.http.routers.portainer.middlewares: secHeaders@file
+      traefik.http.services.portainer.loadbalancer.server.port: 9000
+      traefik.http.services.portainer.loadbalancer.healthcheck.port: 9000
+    networks:
+      default:
+      traefik_net:
+
+networks:
+  default:
+  traefik_net:
+    external: true
