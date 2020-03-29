@@ -1,0 +1,6 @@
+version: "3.7"
+
+services:
+  ps3netsrv:
+    ports:
+      - "${PS3NETSRV_PORT:-38008}:38008/tcp"

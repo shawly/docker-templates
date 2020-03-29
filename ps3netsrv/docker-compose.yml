@@ -1,19 +1,13 @@
-version: '3.5'
+version: "3.7"
 
 services:
   ps3netsrv:
     image: shawly/ps3netsrv
     restart: unless-stopped
-    environment:
-      TZ: ${PS3NETSRV_TZ}
-      KEEP_APP_RUNNING: 1
-      CLEAN_TMP_DIR: 1
-    ports:
-      - "${PS3NETSRV_PORT:-38008}:38008/tcp"
+    env_file:
+      - ps3netsrv.env
     volumes:
-      - ps3netsrv_data:/config
-      - games_data:/games
+      - ${PS3NETSRV_VOLUME:-games_data}:/games
 
 volumes:
-  ps3netsrv_data:
   games_data:
