@@ -131,19 +131,21 @@ In short, the **\<container>.env** only contains variables for the application w
 
  - [Traefik](https://github.com/shawly/docker-templates/tree/master/traefik)
  - [Portainer](https://github.com/shawly/docker-templates/tree/master/portainer)
+ - [ps3netsrv](https://github.com/shawly/docker-templates/tree/master/ps3netsrv)
 
-### How to use?
+## How to use?
 
 Every template should contain a **README.md** with instructions to setup. For simple applications it's usually enough to execute ```docker-compose``` with the **ports** and/or the **traefik** delta included.
 
-## Not ready
+## Not ready yet
 
 Everything that is not listed above. They usually work but I haven't been maintaining them on GitHub so they are outdated and there are lot more on my private repo. I'm currently cleaning them up and adjusting them to the new template structure so I can upload them here as well.
 
 ## Planned
 
  - Shell scripts for execution of ```docker-compose``` without having to append every delta with the ```-f``` argument.
- - A basic template for creating new templates via copy & pasting
+ - A basic template for creating new templates via copy & pasting.
+ - Add descriptions and order as soon as the list of containers increases.
 
 # Issues?
 
