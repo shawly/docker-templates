@@ -133,6 +133,7 @@ In short, the **\<container>.env** only contains variables for the application w
  - [Portainer](https://github.com/shawly/docker-templates/tree/master/portainer)
  - [ps3netsrv](https://github.com/shawly/docker-templates/tree/master/ps3netsrv)
  - [TeamSpeak](https://github.com/shawly/docker-templates/tree/master/teamspeak)
+ - [Watchtower](https://github.com/shawly/docker-templates/tree/master/watchtower)
 
 ## How to use?
 
