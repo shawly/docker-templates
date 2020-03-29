@@ -10,7 +10,7 @@ docker-compose -f docker-compose.yml -f docker-compose.traefik.yml -f docker-com
 
 That way you can make sure no environment variables are missing and the labels for Traefik are correct.
 
-# Setup
+## Setup
 
 You need to create an acme.json first and apply the correct attributes before running this.
 
