@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  jdownloader2:
+    ports:
+      - ${JD2_HTTP_PORT:-5800}:5800/tcp
+      - ${JD2_VNC_PORT:-5900}:5900/tcp
+      - ${JD2_MYJD_PORT:-3129}:3129/tcp

@@ -1,18 +1,15 @@
-version: '3.5'
+version: "3.7"
 
 services:
   jdownloader2:
     image: jlesage/jdownloader-2
     restart: unless-stopped
-    ports:
-      - ${JD2_HTTP_PORT:-5800}:5800/tcp
-      - ${JD2_VNC_PORT:-5900}:5900/tcp
     env_file:
       - jdownloader2.env
     volumes:
       - jdownloader2_data:/config
-      - jdownloader2_downloads:/output
+      - downloads:/output
 
 volumes:
   jdownloader2_data:
-  jdownloader2_downloads:
+  downloads:

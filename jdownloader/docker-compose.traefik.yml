@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  jdownloader2:
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.jdownloader2-https.redirectscheme.scheme: https
+      traefik.http.routers.jdownloader2-http.entrypoints: web
+      traefik.http.routers.jdownloader2-http.rule: "Host(`${SUBDOMAIN:-jdownloader2}.${DOMAIN}`)"
+      traefik.http.routers.jdownloader2-http.middlewares: jdownloader2-https@docker
+      traefik.http.routers.jdownloader2.entrypoints: web-secure
+      traefik.http.routers.jdownloader2.rule: "Host(`${SUBDOMAIN:-jdownloader2}.${DOMAIN}`)"
+      traefik.http.routers.jdownloader2.tls: true
+      traefik.http.routers.jdownloader2.tls.certresolver: default
+      traefik.http.routers.jdownloader2.middlewares: secHeaders@file
+      traefik.http.services.jdownloader2.loadbalancer.server.port: 5800
+      traefik.http.services.jdownloader2.loadbalancer.healthcheck.port: 5800
+    networks:
+      default:
+      traefik_net:
+
+networks:
+  default:
+  traefik_net:
+    external: true

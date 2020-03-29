@@ -1,0 +1,16 @@
+version: "3.7"
+
+volumes:
+  jdownloader2_data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=${JD2_NFS_SERVER},${JD2_NFS_MOUNTOPTS:-rw,nolock}
+      device: ${JD2_NFS_SERVER}:${JD2_NFS_MOUNT}
+  downloads:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=${DL_NFS_SERVER},${DL_NFS_MOUNTOPTS:-rw,nolock}
+      device: ${DL_NFS_SERVER}:${DL_NFS_MOUNT}
+
