@@ -51,10 +51,13 @@ If you want to store your data on an NFS share, there is no need to mount it you
 # open .env
 editor .env
 # and add
-NFS_SERVER=your.nfs.host.or.ip.com
-NFS_MOUNT=/mnt/nfs/share/to/mount
+DB_NFS_SERVER=your.nfs.host.or.ip.com
+DB_NFS_MOUNT=/mnt/nfs/share/to/mount
+TS3_NFS_SERVER=your.nfs.host.or.ip.com
+TS3_NFS_MOUNT=/mnt/nfs/share/to/mount
 # optional, will default to rw,nolock
-NFS_MOUNTOPTS=rw,nolock
+DB_NFS_MOUNTOPTS=rw,nolock
+TS3_NFS_MOUNTOPTS=rw,nolock
 ```
 
 Save the ```.env``` file and add the compose file to your docker-compose command with the ```-f``` arg again and make sure to run the ```config``` command first to check for errors!

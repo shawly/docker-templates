@@ -5,6 +5,6 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=${NFS_SERVER},${NFS_MOUNTOPTS:-rw,nolock}
-      device: ${NFS_SERVER}:${NFS_MOUNT}
+      o: addr=${TS3_NFS_SERVER},${TS3_NFS_MOUNTOPTS:-rw,nolock}
+      device: ${TS3_NFS_SERVER}:${TS3_NFS_MOUNT}
 
