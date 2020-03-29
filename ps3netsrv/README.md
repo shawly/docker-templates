@@ -5,7 +5,7 @@
 Before running the template with ```up -d``` I recommend you to always check the template first with ```config```.
 
 ```shell
-docker-compose -f docker-compose.yml -f docker-compose.traefik.yml -f docker-compose.ports.yml -f config
+docker-compose -f docker-compose.yml -f docker-compose.traefik.yml -f docker-compose.ports.yml config
 ```
 
 That way you can make sure no environment variables are missing and the labels for Traefik are correct.
