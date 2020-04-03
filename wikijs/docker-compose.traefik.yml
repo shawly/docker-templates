@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  wiki:
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.wikijs-https.redirectscheme.scheme: https
+      traefik.http.routers.wikijs-http.entrypoints: web
+      traefik.http.routers.wikijs-http.rule: "Host(`${SUBDOMAIN:-wikijs}.${DOMAIN}`)"
+      traefik.http.routers.wikijs-http.middlewares: wikijs-https@docker
+      traefik.http.routers.wikijs.entrypoints: web-secure
+      traefik.http.routers.wikijs.rule: "Host(`${SUBDOMAIN:-wikijs}.${DOMAIN}`)"
+      traefik.http.routers.wikijs.tls: true
+      traefik.http.routers.wikijs.tls.certresolver: default
+      traefik.http.routers.wikijs.middlewares: secHeaders@file
+      traefik.http.services.wikijs.loadbalancer.server.port: 3000
+      traefik.http.services.wikijs.loadbalancer.healthcheck.port: 3000
+    networks:
+      default:
+      traefik_net:
+
+networks:
+  default:
+  traefik_net:
+    external: true

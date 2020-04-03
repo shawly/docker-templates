@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  db:
+    image: mariadb:10
+    restart: unless-stopped
+    env_file:
+      - wikijs.env
+    logging:
+      driver: "none"
+    volumes:
+      - db-data:/var/lib/mysql
+
+  wiki:
+    depends_on:
+      - db
+
+volumes:
+  db-data:

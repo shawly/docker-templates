@@ -1,0 +1,6 @@
+version: "3.7"
+
+services:
+  wiki:
+    ports:
+      - "${WIKIJS_PORT:-3000}:3000"

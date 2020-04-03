@@ -1,0 +1,6 @@
+version: "3.7"
+
+services:
+  wiki:
+    volumes:
+      ./config.yml:/wiki/config.yml

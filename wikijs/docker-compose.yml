@@ -1,34 +1,6 @@
-version: '3'
+version: "3.7"
 
 services:
-  db:
-    image: mongo
-    restart: always
-    command: --smallfiles --bind_ip db
-    volumes:
-      - db_data:/data/db
-      
-  wikijs:
-    image: requarks/wiki
-    restart: always
-    depends_on:
-      - db
-      - configurator
-    environment:
-      WIKI_ADMIN_EMAIL: ${WIKI_ADMIN_EMAIL}
-    volumes:
-      - wikijs_data:/var/wiki/repo
-      - ./config.yml:/var/wiki/config.yml
-      - ./git-private.key:/etc/wiki/keys/git-private.pem
-
-  configurator:
-    image: shawly/wikijs-configurator
-    build: .
-    env_file:
-      - wikijs.env
-    volumes:
-      - .:/tmp
-
-volumes:
-  db_data:
-  wikijs_data:
+  wiki:
+    image: requarks/wiki:2
+    restart: unless-stopped
