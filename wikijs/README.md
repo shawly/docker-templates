@@ -59,7 +59,7 @@ echo SUBDOMAIN=$MYSUBDOMAIN >> .env
 After that you can run 
 
 ```shell
-docker-compose -f docker-compose.yml -f docker-compose.traefik.yml [-f docker-compose.config.env|file.yml] [-f docker-compose.db.sqlite|postgres|mariadb.yml] up -d
+docker-compose -f docker-compose.yml -f docker-compose.traefik.yml [-f docker-compose.config.env|file.yml] [-f docker-compose.db.sqlite|postgres|mariadb|mysql.yml] up -d
 ```
 
 Now Wiki.js should be served as subdomain under the domain you specified, e.g. ```wikijs.example.com``` or ```wikijs.subdomain.example.com```.
@@ -67,7 +67,7 @@ Now Wiki.js should be served as subdomain under the domain you specified, e.g. `
 ## Database
 
 You get to use different choices for databases, ```mysql```, ```postgres```, ```mariadb```, ```mssql``` or ```sqlite```. (see [WikiJS documentation](https://docs.requarks.io/install/docker))  
-I included deltas for ```sqlite```, ```mariadb``` and ```postgres```. Depending on the configuration choice you made you either need to adjust the ```wikijs.env``` or your ```config.yml```.
+I included deltas for ```sqlite```, ```mariadb```, ```mysql``` and ```postgres```. Depending on the configuration choice you made you either need to adjust the ```wikijs.env``` or your ```config.yml```.
 
 ### sqlite
 
@@ -79,9 +79,9 @@ docker-compose -f docker-compose.yml -f docker-compose.db.sqlite.yml [-f docker-
 
 A **db.sqlite** file will be created in the current directory, if you want this file to be located somewhere else you need to create an ```.env``` file and add the environment variable **WIKIJS_SQLITE_DBFILE** to it to adjust the path to where you want it, for example ```WIKIJS_SQLITE_DBFILE=/mnt/nas/myshare/db.sqlite```.
 
-### PostgreSQL/MariaDB
+### PostgreSQL/MariaDB/MySQL
 
-For PostgreSQL or MariaDB you need to add the ```db.postgres``` or ```db.mariadb``` delta and adjust your config to use one of the database types.  
+For PostgreSQL, MariaDB or MySQL you need to add the ```db.postgres```, ```db.mariadb``` or ```db.mysql``` delta and adjust your config to use one of the database types.  
 *FYI you don't need to include the ```config.env``` delta anymore since it is required for your databases to work. The ```config.file``` delta however is still optional if you want to use it you need to include it.*
 
 ```shell
@@ -89,6 +89,8 @@ For PostgreSQL or MariaDB you need to add the ```db.postgres``` or ```db.mariadb
 docker-compose -f docker-compose.yml -f docker-compose.db.postgres.yml [-f docker-compose.config.file.yml] [-f docker-compose.traefik.yml] [-f docker-compose.ports.yml] up -d
 # for mariadb
 docker-compose -f docker-compose.yml -f docker-compose.db.mariadb.yml [-f docker-compose.config.file.yml] [-f docker-compose.traefik.yml] [-f docker-compose.ports.yml] up -d
+# for mysql
+docker-compose -f docker-compose.yml -f docker-compose.db.mysql.yml [-f docker-compose.config.file.yml] [-f docker-compose.traefik.yml] [-f docker-compose.ports.yml] up -d
 ```
 
 ## NFS
