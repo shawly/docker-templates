@@ -127,7 +127,7 @@ You can either install ```apache2-utils``` for this and run:
 echo $(htpasswd -nbB <USER> "<PASS>") | sed -e s/\\$/\\$\\$/g
 ```
 
-or simply use an online service for this, like [this one](https://hostingcanada.org/htpasswd-generator/). (make sure to thoose bcrypt)
+or simply use an online service for this, like [this one](https://hostingcanada.org/htpasswd-generator/). (make sure to choose bcrypt)
 
 Now you can add the generated basic auth to the docker-compose.traefik.yml, like this
 
