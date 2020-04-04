@@ -28,6 +28,14 @@ To run this container in standalone mode **without Traefik** reverse proxy, you 
 docker-compose -f docker-compose.yml -f docker-compose.ports.yml up -d
 ```
 
+### Extra ports
+
+If you need to open extra ports for running plex in your local network as DLNA for example, you can add the `ports.extra` delta instead of the normal `ports` delta.
+
+```shell
+docker-compose -f docker-compose.yml -f docker-compose.ports.extra.yml up -d
+```
+
 ## Traefik
 
 If you are using Traefik you need to create an .env file first which specifies your domain.  

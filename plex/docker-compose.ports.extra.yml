@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  plex:
+    ports:
+      - "${PLEX_PORT:-32400}:32400"
+      - "${PLEX_BONJOUR_AVAHI:-5353}:5353/udp" #Bonjour/Avahi
+      - "${PLEX_HT_COMPANION:-3005}:3005/tcp" #Plex Home Theatre via Plex Companion
+      - "${PLEX_ROKU_COMPANION:-8324}:8324/tcp" #Plex for Roku via Plex Companion
+      - "${PLEX_DLNA1:-1900}:1900/udp" #Plex DLNA Server
+      - "${PLEX_DLNA2:-32469}:32469/udp" #Plex DLNA Server
+      - "${PLEX_GDM1:-32410}:32410/udp" #GDM network discovery
+      - "${PLEX_GDM2:-32412}:32412/udp" #GDM network discovery
+      - "${PLEX_GDM3:-32413}:32413/udp" #GDM network discovery
+      - "${PLEX_GDM4:-32414}:32414/udp" #GDM network discovery
