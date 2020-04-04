@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  plex:
+    image: spritsail/plex-media-server
+    restart: unless-stopped
+    env_file:
+      - plex.env
+    volumes:
+      - plex_data:/config
+    networks:
+      net:
+
+volumes:
+  plex_data:
+
+# this creates a network named plex_net, for integration with other services
+networks:
+  net:

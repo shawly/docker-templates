@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  plex:
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.plex-https.redirectscheme.scheme: https
+      traefik.http.routers.plex-http.entrypoints: web
+      traefik.http.routers.plex-http.rule: "Host(`${SUBDOMAIN:-plex}.${DOMAIN}`)"
+      traefik.http.routers.plex-http.middlewares: plex-https@docker
+      traefik.http.routers.plex.entrypoints: web-secure
+      traefik.http.routers.plex.rule: "Host(`${SUBDOMAIN:-plex}.${DOMAIN}`)"
+      traefik.http.routers.plex.tls: true
+      traefik.http.routers.plex.tls.certresolver: default
+      traefik.http.routers.plex.middlewares: secHeaders@file
+      traefik.http.services.plex.loadbalancer.server.port: 9000
+      traefik.http.services.plex.loadbalancer.healthcheck.port: 9000
+    networks:
+      traefik_net:
+
+networks:
+  traefik_net:
+    external: true

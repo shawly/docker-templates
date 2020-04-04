@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  plex:
+    volumes:
+      - plex_transcode:/transcode
+
+volumes:
+  plex_transcode:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=${PLEX_TRANSCODE_NFS_SERVER},${PLEX_TRANSCODE_NFS_MOUNTOPTS:-rw,nolock}
+      device: ${PLEX_TRANSCODE_NFS_SERVER}:${PLEX_TRANSCODE_NFS_MOUNT}

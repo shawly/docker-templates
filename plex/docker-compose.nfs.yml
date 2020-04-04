@@ -1,0 +1,9 @@
+version: "3.7"
+
+volumes:
+  plex_data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=${PLEX_NFS_SERVER},${PLEX_NFS_MOUNTOPTS:-rw,nolock}
+      device: ${PLEX_NFS_SERVER}:${PLEX_NFS_MOUNT}
