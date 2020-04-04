@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  pihole:
+    networks:
+      net:
+        ipv4_address: ${PIHOLE_INTERNAL_STATIC_IP:-172.253.0.2}
+
+networks:
+  net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${PIHOLE_INTERNAL_STATIC_SUBNET:-172.253.0.0/24}

@@ -146,6 +146,8 @@ In short, the **\<container>.env** only contains variables for the application w
  - [Watchtower](https://github.com/shawly/docker-templates/tree/master/watchtower) - automatic update your containers
  ### Media
  - [Plex Media Server](https://github.com/shawly/docker-templates/tree/master/plex) - A media server for serving your media collection
+ ### DNS
+ - [PiHole](https://github.com/shawly/docker-templates/tree/master/pihole) - An Ad-blocking DNS server which can also be used as DHCP server
  ### Documentation
  - [Wiki.js](https://github.com/shawly/docker-templates/tree/master/wikijs) - JavaScript based wiki software, can be backed by different storage systems like Amazon S3, git or
  ### Download Managers

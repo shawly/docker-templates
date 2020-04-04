@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  pihole:
+    dns:
+      - 127.0.0.1
+      - ${PIHOLE_DNS1:-1.1.1.1}
+      - ${PIHOLE_DNS2:-1.0.0.1}

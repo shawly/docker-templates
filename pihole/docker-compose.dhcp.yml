@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+  pihole:
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "${PIHOLE_DHCP_PORT:-67}:67/udp"

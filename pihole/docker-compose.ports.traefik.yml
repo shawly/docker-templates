@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  pihole:
+    ports:
+      - "${PIHOLE_DNS_PORT:-53}:53/udp"
+      - "${PIHOLE_DNS_PORT:-53}:53/tcp"
