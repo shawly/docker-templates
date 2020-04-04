@@ -28,7 +28,7 @@ For example like this (replace example.com with your domain or subdomain):
 MYDOMAIN=example.com
 echo DOMAIN=$MYDOMAIN >> .env
 # to adjust the subdomain you have to edit the SUBDOMAIN env var as well
-MYSUBDOMAIN=jd
+MYSUBDOMAIN=prtnr
 echo SUBDOMAIN=$MYSUBDOMAIN >> .env
 ```
 

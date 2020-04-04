@@ -66,51 +66,6 @@ Save the ```.env``` file and add the compose file to your docker-compose command
 docker-compose -f docker-compose.yml -f docker-compose.nfs.yml [-f docker-compose.mysql.yml -f docker-compose.mysql.nfs.yml] up -d
 ```
 
-### Migrate to NFS?
-
-You want to migrate to NFS as storage backend but don't want to copy everything manually or resetup your application? Don't worry, it's fairly easy.
-
-#### Backup everything
-
-```shell
-# to get the name of the container to back up execute this and copy the name
-docker-compose ps
-# now paste the name into this variable like this
-CONTAINER_NAME=yourcontainername
-# now get the volume path via, copy the internal path e.g. /data for portainer
-docker-compose config
-# paste the internal path into this variable like this
-CONTAINER_PATH=/path/to/backup
-# now run this to create an archive of the container data
-docker run --rm --volumes-from $CONTAINER_NAME \
-       -v $(pwd):/backup alpine tar czvf /backup/$CONTAINER_NAME.tar.gz $CONTAINER_PATH
-```
-
-Your files are now backed up, you can view the archive with ```tar -tf $CONTAINER_NAME.tar.gz```.
-
-#### Restore the data
-
-To restore the archive on a new volume or even into a new container execute the following
-
-```shell
-# if you want to migrate to NFS on your current container you need to remove the local volume first, the easiest way is to purge the container
-# ATTENTION check your backups, the following command will delete the volumes and their data too!
-docker-compose down -v
-# now start up your container again but this time include the docker-compose.nfs.yml aswell (make sure to set up your .env file accordingly!)
-# also don't forget to add the traefik or ports (or both) compose files aswell
-docker-compose -f docker-compose.yml -f docker-compose.nfs.yml [-f docker-compose.traefik.yml] [-f docker-compose.ports.yml] up -d
-# now your container will have a volume backed by your nfs storage, lets restore the data, but stop the container first
-docker-compose stop
-# FYI if you changed your shell you need to set up the CONTAINER_NAME and CONTAINER_PATH vars again!
-docker run --rm --volumes-from $CONTAINER_NAME \
-       -v $(pwd):/backup alpine sh -c "cd $CONTAINER_PATH && tar xvf /backup/$CONTAINER_NAME.tar --strip 1"
-# finished, start your container again
-docker-compose -f docker-compose.yml -f docker-compose.nfs.yml [-f docker-compose.traefik.yml] [-f docker-compose.ports.yml] start
-```
-
-That's it, your data should be restored and you can now save the archive somewhere else or remove it if you think it's a good idea.  
-FYI if you want to write a proper script for this, I'd be happy if you'd share it with everyone through a pull request. :)
-
 ### Troubleshooting
 
 #### Port xy is already taken

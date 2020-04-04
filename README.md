@@ -144,6 +144,10 @@ In short, the **\<container>.env** only contains variables for the application w
  - [Traefik](https://github.com/shawly/docker-templates/tree/master/traefik) - a flexible, extensive reverse proxy
  - [Portainer](https://github.com/shawly/docker-templates/tree/master/portainer) - monitoring and simple management of containers
  - [Watchtower](https://github.com/shawly/docker-templates/tree/master/watchtower) - automatic update your containers
+ ### Media
+ - [Plex Media Server](https://github.com/shawly/docker-templates/tree/master/plex) - A media server for serving your media collection
+ ### Documentation
+ - [Wiki.js](https://github.com/shawly/docker-templates/tree/master/wikijs) - JavaScript based wiki software, can be backed by different storage systems like Amazon S3, git or
  ### Download Managers
  - [JDownloader2](https://github.com/shawly/docker-templates/tree/master/jdownloader) - popular Java based download manager
  ### Voice Chat
@@ -182,6 +186,52 @@ git merge upstream/master
 ```
 
 If you made sure to **not adjust any files from the upstream** (use override deltas!) you will not get any merge conflicts and have an updated repository.
+
+### Migrating to NFS
+
+You want to migrate to NFS as storage backend with the `nfs` delta but don't want to copy everything manually or resetup your application? Don't worry, it's fairly easy.
+
+#### Backup everything
+
+```shell
+# to get the name of the container to back up execute this and copy the name
+docker-compose ps
+# now paste the name into this variable like this
+CONTAINER_NAME=plex_plex_1
+# now get the volume paths via, copy the internal path e.g. /config for plex
+docker-compose config
+# paste the internal paths into this variable like this (make sure the path is absolute!)
+# if you want to back up multiple volumes it's necessary to add all paths that are necessary separated by space (e.g. /config /data /opt)
+CONTAINER_PATHS=/config
+# now run this to create an archive of the container data
+docker run --rm --volumes-from $CONTAINER_NAME \
+       -v $(pwd):/backup alpine tar czvf /backup/$CONTAINER_NAME.tar.gz $CONTAINER_PATHS
+```
+
+Your files are now backed up, you can view the archive with ```tar -tf $CONTAINER_NAME.tar.gz```.
+
+#### Restore the data
+
+To restore the archive on a new volume or even into a new container execute the following
+
+```shell
+# if you want to migrate to NFS on your current container you need to remove the local volume first, the easiest way is to purge the container
+# ATTENTION check your backups, the following command will delete the volumes and their data too!
+docker-compose down -v
+# now start up your container again but this time include the docker-compose.nfs.yml aswell (make sure to set up your .env file accordingly!)
+# also don't forget to add the traefik or ports (or both) compose files aswell
+docker-compose -f docker-compose.yml -f docker-compose.nfs.yml [-f docker-compose.traefik.yml] [-f docker-compose.ports.yml] up -d
+# now your container will have a volume backed by your nfs storage, lets restore the data, but stop the container first
+docker-compose stop
+# FYI if you changed your shell you need to set up the CONTAINER_NAME vars again!
+docker run --rm --volumes-from $CONTAINER_NAME \
+       -v $(pwd):/backup alpine sh -c "cd / && tar xvf /backup/$CONTAINER_NAME.tar --strip 1"
+# finished, start your container again
+docker-compose -f docker-compose.yml -f docker-compose.nfs.yml [-f docker-compose.traefik.yml] [-f docker-compose.ports.yml] start
+```
+
+That's it, your data should be restored and you can now save the archive somewhere else or remove it if you think it's a good idea.  
+FYI if you want to write a proper script for this, I'd be happy if you'd share it with everyone through a pull request. :)
 
 ## TODOs
 

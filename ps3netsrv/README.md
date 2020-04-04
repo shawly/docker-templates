@@ -12,9 +12,9 @@ That way you can make sure no environment variables are missing and the labels f
 
 ## Setup
 
-You need to either specify a bind mount to your games folder or use an [NFS](#nfs) share
+You need to either specify a bind mount to your games folder or use an [NFS](../README#nfs) share
 
-### Bind mount
+### Mount games folder locally
 
 If your games are on the same host as your container, you can use a bind mound to a local folder on your host.
 
@@ -25,25 +25,9 @@ editor .env
 PS3NETSRV_VOLUME=$HOME/games
 ```
 
-### NFS
+### Mount games folder from NFS
 
-If your games are located on another host, a NAS for example, you can use the nfs delta to use your NFS share as backend for the games_data volume.
-
-```shell
-# open .env
-editor .env
-# and add
-NFS_SERVER=your.nfs.host.or.ip.com
-NFS_MOUNT=/mnt/nfs/share/to/mount
-# optional, will default to rw,nolock
-NFS_MOUNTOPTS=rw,nolock
-```
-
-Save the ```.env``` file and add the compose file to your docker-compose command with the ```-f``` arg again and make sure to run the ```config``` command first to check for errors!
-
-```shell
-docker-compose -f docker-compose.yml -f docker-compose.ports.yml -f docker-compose.nfs.yml up -d
-```
+See main [README#NFS](../README#nfs)
 
 ## Run
 
