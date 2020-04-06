@@ -2,3 +2,8 @@ version: "3.7"
 
 volumes:
   games_data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER},${NFS_MOUNTOPTS:-rw,nolock}
+      device: ${NFS_SERVER}:${NFS_MOUNT}
