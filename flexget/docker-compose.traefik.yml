@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  flexget:
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.flexget-https.redirectscheme.scheme: https
+      traefik.http.routers.flexget-http.entrypoints: web
+      traefik.http.routers.flexget-http.rule: "Host(`${SUBDOMAIN:-flexget}.${DOMAIN}`)"
+      traefik.http.routers.flexget-http.middlewares: flexget-https@docker
+      traefik.http.routers.flexget.entrypoints: web-secure
+      traefik.http.routers.flexget.rule: "Host(`${SUBDOMAIN:-flexget}.${DOMAIN}`)"
+      traefik.http.routers.flexget.tls: true
+      traefik.http.routers.flexget.tls.certresolver: default
+      traefik.http.routers.flexget.middlewares: secHeaders@file
+      traefik.http.services.flexget.loadbalancer.server.port: 3539
+      traefik.http.services.flexget.loadbalancer.healthcheck.port: 3539
+    networks:
+      default:
+      traefik_net:
+
+networks:
+  default:
+  traefik_net:
+    external: true

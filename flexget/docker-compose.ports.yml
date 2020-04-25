@@ -1,0 +1,6 @@
+version: "3.7"
+
+services:
+  flexget:
+    ports:
+      - "${FLEXGET_WEBUI_PORT:-3539}:3539"
