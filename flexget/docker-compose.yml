@@ -4,6 +4,8 @@ services:
   flexget:
     image: wiserain/flexget
     restart: unless-stopped
+    env_file:
+      - flexget.env
     volumes:
       - flexget_data:/data
       - ${FLEXGET_CONFIG_VOLUME:-./config}:/config
