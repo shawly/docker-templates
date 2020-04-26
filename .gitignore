@@ -5,3 +5,4 @@
 **/*.override*.yml
 !**/example.env
 !**/*.example.env
+!**/.gitkeep
