@@ -4,7 +4,7 @@ services:
   traefik:
     labels:
        traefik.enable: true
-       traefik.http.routers.api.rule: "Host(`traefik.lan.shawly.net`) && PathPrefix(`/dashboard`)"
+       traefik.http.routers.api.rule: "Host(`${SUBDOMAIN:-traefik}.${DOMAIN}`) && PathPrefix(`/dashboard`)"
        traefik.http.routers.api.entryPoints: dashboard
        traefik.http.routers.api.rule: "PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
        traefik.http.routers.api.service: api@internal
