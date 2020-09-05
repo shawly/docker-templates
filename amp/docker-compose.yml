@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  minecraft:
+    image: spritsail/amp-minecraft
+    restart: unless-stopped
+    env_file:
+      - amp.env
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - amp_data:/ampdata
+
+volumes:
+  amp_data:

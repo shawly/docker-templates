@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  minecraft:
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.amp-https.redirectscheme.scheme: https
+      traefik.http.routers.amp-http.entrypoints: web
+      traefik.http.routers.amp-http.rule: "Host(`${SUBDOMAIN:-amp}.${DOMAIN}`)"
+      traefik.http.routers.amp-http.middlewares: amp-https@docker
+      traefik.http.routers.amp.entrypoints: web-secure
+      traefik.http.routers.amp.rule: "Host(`${SUBDOMAIN:-amp}.${DOMAIN}`)"
+      traefik.http.routers.amp.tls: true
+      traefik.http.routers.amp.tls.certresolver: default
+      traefik.http.routers.amp.middlewares: secHeaders@file
+      traefik.http.services.amp.loadbalancer.server.port: 8080
+      traefik.http.services.amp.loadbalancer.healthcheck.port: 8080
+    networks:
+      ${MACVLAN_NET:-default}:
+      traefik_net:
+
+networks:
+  ${MACVLAN_NET:-default}:
+  traefik_net:
+    external: true

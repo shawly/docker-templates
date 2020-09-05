@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  minecraft:
+    ports:
+      - "${AMP_PORT:-8080}:8080"
+      - "${MINECRAFT_PORT:-25565}:25565"
