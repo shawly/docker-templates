@@ -3,10 +3,10 @@ version: "3.7"
 services:
   minecraft:
     networks:
-      ${MACVLAN_NET:-macvlan_net}:
+      default:
         ipv4_address: ${MACVLAN_NET_IP}
 
 networks:
-  ${MACVLAN_NET:-macvlan_net}:
+  default:
     external:
       name: ${MACVLAN_NET:-macvlan_net}
