@@ -24,6 +24,8 @@ RUN \
 
 WORKDIR /crafty_web
 
+USER crafty
+
 # Define mountable directories.
 VOLUME ["/minecraft_servers", "/crafty_db"]
 
