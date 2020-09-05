@@ -17,8 +17,7 @@ RUN \
     pip3 install -r requirements.txt && \
   echo "Creating crafty user..." && \
     groupadd -r -g 500 crafty && \
-    useradd -u 500 -U -M -s /bin/false crafty && \
-    usermod -G users crafty && \
+    useradd -u 500 -g 500 -M -s /bin/false crafty && \
     chown -R 500:500 /crafty_web /minecraft_servers /crafty_db && \
   echo "Cleaning up temp directory..." && \
     rm -rf /tmp/*
