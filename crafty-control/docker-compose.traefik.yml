@@ -13,6 +13,7 @@ services:
       traefik.http.routers.crafty.tls: true
       traefik.http.routers.crafty.tls.certresolver: default
       traefik.http.routers.crafty.middlewares: secHeaders@file
+      traefik.http.services.crafty.loadbalancer.server.scheme: https
       traefik.http.services.crafty.loadbalancer.server.port: 8000
       traefik.http.services.crafty.loadbalancer.healthcheck.port: 8000
     networks:

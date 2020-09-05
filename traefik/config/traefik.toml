@@ -29,3 +29,6 @@
     [certificatesResolvers.default.acme.dnsChallenge]
       provider = "cloudflare"
       delayBeforeCheck = 0
+
+[serversTransport]
+  insecureSkipVerify = true
