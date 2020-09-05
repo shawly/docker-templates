@@ -5,7 +5,7 @@ services:
     image: containrrr/watchtower
     restart: always
     volumes:
-      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config.json:/config.json
     env_file:
