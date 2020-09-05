@@ -16,10 +16,10 @@ services:
       traefik.http.services.amp.loadbalancer.server.port: 8080
       traefik.http.services.amp.loadbalancer.healthcheck.port: 8080
     networks:
-      ${MACVLAN_NET:-default}:
+      default:
       traefik_net:
 
 networks:
-  ${MACVLAN_NET:-default}:
+  default:
   traefik_net:
     external: true
