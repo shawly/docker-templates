@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  minecraft:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - crafty.env
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - server_data:/minecraft_servers
+      - db_data:/crafty_db
+
+volumes:
+  server_data:
+  db_data:

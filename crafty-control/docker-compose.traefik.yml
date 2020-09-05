@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  minecraft:
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.crafty-https.redirectscheme.scheme: https
+      traefik.http.routers.crafty-http.entrypoints: web
+      traefik.http.routers.crafty-http.rule: "Host(`${SUBDOMAIN:-crafty}.${DOMAIN}`)"
+      traefik.http.routers.crafty-http.middlewares: crafty-https@docker
+      traefik.http.routers.crafty.entrypoints: web-secure
+      traefik.http.routers.crafty.rule: "Host(`${SUBDOMAIN:-crafty}.${DOMAIN}`)"
+      traefik.http.routers.crafty.tls: true
+      traefik.http.routers.crafty.tls.certresolver: default
+      traefik.http.routers.crafty.middlewares: secHeaders@file
+      traefik.http.services.crafty.loadbalancer.server.port: 8000
+      traefik.http.services.crafty.loadbalancer.healthcheck.port: 8000
+    networks:
+      default:
+      traefik_net:
+
+networks:
+  default:
+  traefik_net:
+    external: true

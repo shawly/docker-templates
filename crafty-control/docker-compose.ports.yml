@@ -1,0 +1,7 @@
+version: "3.7"
+
+services:
+  minecraft:
+    ports:
+      - "${CRAFTY_PORT:-8000}:8000"
+      - "${MINECRAFT_PORT:-25565}:25565"
