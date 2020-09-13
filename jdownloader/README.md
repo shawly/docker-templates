@@ -50,14 +50,9 @@ If you want to store your data on an NFS share, there is no need to mount it you
 # open .env
 editor .env
 # and add
-# JD2_ is for the /config folder of jdownloader itself
-JD2_NFS_SERVER=your.nfs.host.or.ip.com
-JD2_NFS_MOUNT=/mnt/nfs/share/to/mount
-# DL_ is for the /output folder where downloads will be stored
 DL_NFS_SERVER=your.nfs.host.or.ip.com
 DL_NFS_MOUNT=/mnt/nfs/share/to/mount
 # optional, will default to rw,nolock
-JD2_NFS_MOUNTOPTS=rw,nolock
 DL_NFS_MOUNTOPTS=rw,nolock
 ```
 
