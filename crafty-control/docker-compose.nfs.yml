@@ -5,6 +5,12 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=${NFS_SERVER},${NFS_MOUNTOPTS:-rw,nolock}
-      device: ${NFS_SERVER}:${NFS_MOUNT}
+      o: addr=${MCSERVERS_NFS_SERVER},${MCSERVERS_NFS_MOUNTOPTS:-rw,nolock}
+      device: ${MCSERVERS_NFS_SERVER}:${MCSERVERS_NFS_MOUNT}
+  backup_data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=${MCBACKUPS_NFS_SERVER},${MCBACKUPS_NFS_MOUNTOPTS:-rw,nolock}
+      device: ${MCBACKUPS_NFS_SERVER}:${MCBACKUPS_NFS_MOUNT}
 

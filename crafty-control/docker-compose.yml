@@ -10,7 +10,9 @@ services:
       - /etc/localtime:/etc/localtime
       - server_data:/minecraft_servers
       - db_data:/crafty_db
+      - backup_data:/crafty_web/backups
 
 volumes:
   server_data:
   db_data:
+  backup_data:
