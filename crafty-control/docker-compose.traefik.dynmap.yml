@@ -3,14 +3,12 @@ version: "3.7"
 services:
   minecraft:
     labels:
-      traefik.http.middlewares.minecraft-dynmap-https.redirectscheme.scheme: https
-      traefik.http.routers.minecraft-dynmap-http.entrypoints: web
-      traefik.http.routers.minecraft-dynmap-http.rule: "Host(`${SUBDOMAIN:-minecraft-dynmap}.${DOMAIN}`)"
-      traefik.http.routers.minecraft-dynmap-http.middlewares: minecraft-dynmap-https@docker
-      traefik.http.routers.minecraft-dynmap.entrypoints: web-secure
-      traefik.http.routers.minecraft-dynmap.rule: "Host(`${SUBDOMAIN:-minecraft-dynmap}.${DOMAIN}`)"
-      traefik.http.routers.minecraft-dynmap.tls: true
-      traefik.http.routers.minecraft-dynmap.tls.certresolver: default
-      traefik.http.routers.minecraft-dynmap.middlewares: secHeaders@file
-      traefik.http.services.minecraft-dynmap.loadbalancer.server.port: 8123
-      traefik.http.services.minecraft-dynmap.loadbalancer.healthcheck.port: 8123
+      traefik.http.routers.crafty.service: crafty
+      traefik.http.routers.dynmap.service: dynmap
+      traefik.http.routers.dynmap.entrypoints: web-secure
+      traefik.http.routers.dynmap.rule: "Host(`${SUBDOMAIN:-dynmap}.${DOMAIN}`)"
+      traefik.http.routers.dynmap.tls: true
+      traefik.http.routers.dynmap.tls.certresolver: default
+      traefik.http.routers.dynmap.middlewares: secHeaders@file
+      traefik.http.services.dynmap.loadbalancer.server.port: 8123
+      traefik.http.services.dynmap.loadbalancer.healthcheck.port: 8123
