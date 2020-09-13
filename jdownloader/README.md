@@ -49,8 +49,7 @@ If you want to store your data on an NFS share, there is no need to mount it you
 ```shell
 # open .env
 editor .env
-# and add
-DL_NFS_SERVER=your.nfs.host.or.ip.com
+# and add DL_NFS_SERVER=your.nfs.host.or.ip.com
 DL_NFS_MOUNT=/mnt/nfs/share/to/mount
 # optional, will default to rw,nolock
 DL_NFS_MOUNTOPTS=rw,nolock
