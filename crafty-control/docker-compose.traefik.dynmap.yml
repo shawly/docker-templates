@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  minecraft:
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.crafty-dynmap-https.redirectscheme.scheme: https
+      traefik.http.routers.crafty-dynmap-http.entrypoints: web
+      traefik.http.routers.crafty-dynmap-http.rule: "Host(`${SUBDOMAIN:-crafty-dynmap}.${DOMAIN}`)"
+      traefik.http.routers.crafty-dynmap-http.middlewares: crafty-dynmap-https@docker
+      traefik.http.routers.crafty-dynmap.entrypoints: web-secure
+      traefik.http.routers.crafty-dynmap.rule: "Host(`${SUBDOMAIN:-crafty-dynmap}.${DOMAIN}`)"
+      traefik.http.routers.crafty-dynmap.tls: true
+      traefik.http.routers.crafty-dynmap.tls.certresolver: default
+      traefik.http.routers.crafty-dynmap.middlewares: secHeaders@file
+      traefik.http.services.crafty-dynmap.loadbalancer.server.port: 8123
+      traefik.http.services.crafty-dynmap.loadbalancer.healthcheck.port: 8123
+    networks:
+      default:
+      traefik_net:
+
+networks:
+  default:
+  traefik_net:
+    external: true
